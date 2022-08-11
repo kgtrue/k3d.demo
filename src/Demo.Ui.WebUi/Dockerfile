@@ -7,14 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Demo.Ui.WebUi/Demo.Ui.WebUi.fsproj", "Demo.Ui.WebUi/"]
-RUN dotnet restore "Demo.Ui.WebUi/Demo.Ui.WebUi.fsproj"
+COPY ["src/Demo.Ui.WebUi/Demo.Ui.WebUi.csproj", "src/Demo.Ui.WebUi/"]
+RUN dotnet restore "src/Demo.Ui.WebUi/Demo.Ui.WebUi.csproj"
 COPY . .
-WORKDIR "/src/Demo.Ui.WebUi"
-RUN dotnet build "Demo.Ui.WebUi.fsproj" -c Release -o /app/build
+WORKDIR "/src/src/Demo.Ui.WebUi"
+RUN dotnet build "Demo.Ui.WebUi.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Demo.Ui.WebUi.fsproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Demo.Ui.WebUi.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
