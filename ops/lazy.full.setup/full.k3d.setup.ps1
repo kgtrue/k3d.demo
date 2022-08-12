@@ -6,14 +6,14 @@ docker system prune -a -f
 
 
 # run setup.prerequisites
-invoke-expression -Command ..\step.by.step.setup\setup.prerequisites.ps1 | Out-Null
+..\step.by.step.setup\setup.prerequisites.ps1
 
 # run setup.k3d.cluster
-invoke-expression -Command ..\step.by.step.setup\setup.k3d.cluster.ps1 | Out-Null
+..\step.by.step.setup\setup.k3d.cluster.ps1
 
 # run setup.cert-manager
-invoke-expression -Command ..\step.by.step.setup\setup.cert-manager.ps1 | Out-Null
+..\step.by.step.setup\setup.cert-manager.ps1
 
 # run setup.rancher.ps1
-invoke-expression -Command ..\step.by.step.setup\setup.rancher.ps1 | Out-Null
+..\step.by.step.setup\setup.rancher.ps1
 
