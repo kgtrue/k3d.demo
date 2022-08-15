@@ -1,6 +1,7 @@
 using System.Net.Sockets;
 using System.Net;
 using System.Xml.Linq;
+using Demo.Api.First.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IDemoApiSecondService, DemoApiSecondService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,13 +29,14 @@ var summaries = new[]
 var host = Dns.GetHostName();
 var ip = Dns.GetHostEntry(host).AddressList.FirstOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork);
 
-app.MapGet("/HostAndColor", () =>
+app.MapGet("/HostAndColor", async (IDemoApiSecondService demoApiSecondService) =>
 {
+    var argb = await demoApiSecondService.GetRandomARGB();
     return new GetHostAndColor
       (
           host,
           ip.ToString(),
-          System.Drawing.Color.Red.ToArgb()
+          argb.argb
       );
 })
 .WithName("HostAndColor");
@@ -45,5 +47,5 @@ app.Run();
 
 internal record GetHostAndColor(string hostname, string ip, int color)
 {
-    
+
 }

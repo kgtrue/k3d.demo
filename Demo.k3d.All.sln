@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{82713F66-7EE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{D7EB0E48-7A43-465A-B70B-2FA0B161A786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Ui.WebUi", "src\Demo.Ui.WebUi\Demo.Ui.WebUi.csproj", "{5C0490A4-05D8-4872-B4D4-CE992A83330B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Ui.WebUi", "src\Demo.Ui.WebUi\Demo.Ui.WebUi.csproj", "{5C0490A4-05D8-4872-B4D4-CE992A83330B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compose", "Compose", "{F2890AFB-96F5-4FF7-820C-7214FFCAA073}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

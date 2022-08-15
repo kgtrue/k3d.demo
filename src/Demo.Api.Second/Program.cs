@@ -20,7 +20,7 @@ app.UseHttpsRedirection();
 
 var random = new Random();
 
-app.MapGet("/randomColor", () =>
+app.MapGet("/RandomColor", () =>
 {
   var colorARGB = new GetColorARGB
         (
@@ -28,7 +28,7 @@ app.MapGet("/randomColor", () =>
         );
     return colorARGB;
 })
-.WithName("randomColor");
+.WithName("RandomColor");
 
 app.MapGet("/helth", () => { return DateTime.UtcNow; }).WithName("helth");
 

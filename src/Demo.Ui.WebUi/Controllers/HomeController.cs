@@ -1,4 +1,5 @@
-﻿using Demo.Ui.WebUi.Models;
+﻿using Demo.Api.First.Services;
+using Demo.Ui.WebUi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +8,20 @@ namespace Demo.Ui.WebUi.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IDemoApiFirstService demoApiFirstService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ILogger<HomeController> logger,
+            IDemoApiFirstService demoApiFirstService)
         {
             _logger = logger;
+            this.demoApiFirstService = demoApiFirstService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await demoApiFirstService.GetHostAndColor();
+            return View(model);
         }
 
         public IActionResult Privacy()
