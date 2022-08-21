@@ -1,7 +1,6 @@
 # Default env vars
 $env:CLUSTER_NAME="k3d-rancher"
 $env:KUBECONFIG_FILE="${env:CLUSTER_NAME}.yaml"
-date
 
 k3d cluster stop $env:CLUSTER_NAME
 k3d cluster delete $env:CLUSTER_NAME
@@ -15,3 +14,5 @@ k3d kubeconfig get ${env:CLUSTER_NAME} > $env:KUBECONFIG_FILE
 $env:KUBECONFIG=($env:KUBECONFIG_FILE)
 
 kubectl get nodes
+
+date

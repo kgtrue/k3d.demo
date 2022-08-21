@@ -1,6 +1,5 @@
 # Default env vars
 $env:RANCHER_SERVER_HOSTNAME="rancher.localhost"
-date
 
 # Install Rancher
 helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
