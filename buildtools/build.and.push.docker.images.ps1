@@ -1,5 +1,6 @@
 #Build images ad push to registry
-$env:CLUSTER_REGISTRY_URL="k3d-rancher-registry:5111"
+
+$env:CLUSTER_REGISTRY_URL="demo-rancher-registry:62701"
 
 docker build -t demo-api-first:1.0.0 -f "../src/Demo.Api.First/." "../"
 docker image tag demo-api-first:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-api-first:latest

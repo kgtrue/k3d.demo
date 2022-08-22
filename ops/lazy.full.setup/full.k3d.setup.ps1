@@ -18,7 +18,7 @@ docker system prune -a -f
 ..\step.by.step.setup\setup.rancher.ps1
 
 #create image registry
-..\step.by.step.setup\setup.k3d.cluster.registry.ps1
+#..\step.by.step.setup\setup.k3d.cluster.registry.ps1
 
 #run container build and push to local registry on port 5000
 Set-Location ..\..\buildtools\
