@@ -396,5 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/ops/lazy.full.setup/k3d-rancher.yaml
+/ops/lazy.full.setup/*.yaml
 *.exe
