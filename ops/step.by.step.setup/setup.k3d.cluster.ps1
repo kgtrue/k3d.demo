@@ -5,7 +5,13 @@ $env:CLUSTER_REGISTRY_HOST_PORT=":0.0.0.0:62701"
 $env:CLUSTER_REGISTRY_NAME_PORT= ${env:CLUSTER_REGISTRY_NAME} + ${env:CLUSTER_REGISTRY_HOST_PORT}
 $env:KUBECONFIG_FILE="${env:CLUSTER_NAME}.yaml"
 
+$title    = 'Setup k3d cluster'
+$question = 'This will setup cluster named:' + ${env:CLUSTER_NAME} + ' and registry named:' + ${env:CLUSTER_REGISTRY_NAME} + ' on host and port:' + ${env:CLUSTER_REGISTRY_HOST_PORT} + ' if cluster with same name exists this script will delete it remember to add ' + ${env:CLUSTER_REGISTRY_NAME} + ' to host file. Do you want to continue?'
+$choices  = '&Yes', '&No'
 
+$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+if ($decision -eq 0) {
+	
 k3d cluster stop $env:CLUSTER_NAME
 k3d cluster delete $env:CLUSTER_NAME
 
@@ -21,3 +27,4 @@ kubectl get nodes
 docker ps -f name=${env:CLUSTER_REGISTRY_NAME}
 
 date
+}

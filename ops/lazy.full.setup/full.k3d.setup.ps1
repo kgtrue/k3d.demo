@@ -1,9 +1,6 @@
-﻿# Purge your Docker env
-docker rm -f $(docker ps -qa)
-docker network prune -f
-docker volume prune -
-docker system prune -a -f
-
+﻿
+#Purge docker env
+..\step.by.step.setup\setup.purge.docker.ps1
 
 # run setup.prerequisites
 ..\step.by.step.setup\setup.prerequisites.ps1
