@@ -14,6 +14,8 @@ helm repo update
 kubectl create namespace cattle-system
 helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=${env:RANCHER_SERVER_HOSTNAME} --wait
 kubectl -n cattle-system rollout status deploy/rancher
-date
 
+
+Write-Host "To login into rancher open this url and use the following secret to login" -ForegroundColor blue
+kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}'
 }
