@@ -53,7 +53,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "demo-api.second-serviceAccountName" -}}
+{{- define "demo-api-second.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
 {{- default (include "demo-api-second.fullname" .) .Values.serviceAccount.name }}
 {{- else }}

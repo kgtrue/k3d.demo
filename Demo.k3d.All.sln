@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{D7EB0E48-7A43-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Ui.WebUi", "src\Demo.Ui.WebUi\Demo.Ui.WebUi.csproj", "{5C0490A4-05D8-4872-B4D4-CE992A83330B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compose", "Compose", "{F2890AFB-96F5-4FF7-820C-7214FFCAA073}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
