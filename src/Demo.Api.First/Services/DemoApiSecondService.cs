@@ -13,7 +13,7 @@ namespace Demo.Api.First.Services
 
     public class DemoApiSecondService : IDemoApiSecondService
     {
-        private const string BASE_URL_CONFIG_KEY = "DemoApiSecond:BaseUrl";
+        private string BASE_URL_CONFIG_KEY = $"http://{Environment.GetEnvironmentVariable("DEMO_API_SECOND_SERVICE_HOST")}:{Environment.GetEnvironmentVariable("DEMO_API_SECOND_SERVICE_PORT")}";
         private readonly RestSharp.RestClient restClient;
         public DemoApiSecondService(IConfiguration configuration)
         {

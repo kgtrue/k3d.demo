@@ -7,6 +7,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDemoApiFirstService, DemoApiFirstService>();
 var app = builder.Build();
 
+app.MapGet("/helth", () => { return DateTime.UtcNow; }).WithName("helth");
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

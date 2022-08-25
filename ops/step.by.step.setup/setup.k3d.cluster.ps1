@@ -16,7 +16,7 @@ k3d cluster stop $env:CLUSTER_NAME
 k3d cluster delete $env:CLUSTER_NAME
 
 # Create the cluster
-k3d cluster create $env:CLUSTER_NAME --api-port 6550 --servers 1 --port 443:443@loadbalancer --agents 1 --registry-create $env:CLUSTER_REGISTRY_NAME_PORT --wait 
+k3d cluster create $env:CLUSTER_NAME --api-port 6550 --servers 1 --port 443:443@loadbalancer --port 80:80@loadbalancer --agents 1 --registry-create $env:CLUSTER_REGISTRY_NAME_PORT --wait 
 
 k3d cluster list
 k3d kubeconfig get ${env:CLUSTER_NAME} > $env:KUBECONFIG_FILE

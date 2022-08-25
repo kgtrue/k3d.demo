@@ -9,15 +9,21 @@ $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
 if ($decision -eq 0) {
 
 docker build -t demo-api-first:1.0.0 -f "../src/Demo.Api.First/." "../"
-docker image tag demo-api-first:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-api-first:latest
+docker image tag demo-api-first:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-api-first:1.0.0
+docker image tag ${env:CLUSTER_REGISTRY_URL}/demo-api-first:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-api-first:latest
+docker push ${env:CLUSTER_REGISTRY_URL}/demo-api-first:1.0.0
 docker push ${env:CLUSTER_REGISTRY_URL}/demo-api-first:latest
 
 docker build -t demo-api-second:1.0.0 -f "../src/Demo.Api.Second/." "../"
-docker image tag demo-api-second:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-api-second:latest
+docker image tag demo-api-second:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-api-second:1.0.0
+docker image tag ${env:CLUSTER_REGISTRY_URL}/demo-api-second:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-api-second:latest
+docker push ${env:CLUSTER_REGISTRY_URL}/demo-api-second:1.0.0
 docker push ${env:CLUSTER_REGISTRY_URL}/demo-api-second:latest
 
 docker build -t demo-ui:1.0.0 -f "../src/Demo.Ui.WebUi/." "../"
-docker image tag demo-ui:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-ui:latest
+docker image tag demo-ui:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-ui:1.0.0
+docker image tag ${env:CLUSTER_REGISTRY_URL}/demo-ui:1.0.0 ${env:CLUSTER_REGISTRY_URL}/demo-ui:latest
+docker push ${env:CLUSTER_REGISTRY_URL}/demo-ui:1.0.0
 docker push ${env:CLUSTER_REGISTRY_URL}/demo-ui:latest
 }
 
