@@ -14,18 +14,18 @@ namespace Demo.Api.First.Services
 
     public class DemoApiFirstService : IDemoApiFirstService
     {
-        private string BASE_URL_CONFIG_KEY = $"http://{Environment.GetEnvironmentVariable("DEMO_API_FIRST_SERVICE_HOST")}:{Environment.GetEnvironmentVariable("DEMO_API_FIRST_SERVICE_PORT")}";
+        private string BASE_URL_CONFIG_KEY = $"http://{Environment.GetEnvironmentVariable("DEMO_APP_RELEASE_DEMO_API_FIRST_SERVICE_HOST")}:{Environment.GetEnvironmentVariable("DEMO_APP_RELEASE_DEMO_API_FIRST_SERVICE_PORT")}";
         private readonly RestSharp.RestClient restClient;
         public DemoApiFirstService(IConfiguration configuration)
         {
-            restClient = new RestSharp.RestClient(configuration.GetValue<string>(BASE_URL_CONFIG_KEY));
+            restClient = new RestSharp.RestClient(BASE_URL_CONFIG_KEY);
         }
 
         public async Task<HostAndColor> GetHostAndColor()
         {
             try
             {
-                var endPoint = "/RandomColor";
+                var endPoint = "/HostAndColor";
                 var request = new RestSharp.RestRequest(endPoint);
                 var response = await restClient.ExecuteAsync<HostAndColor>(request);
 

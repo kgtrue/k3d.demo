@@ -2,16 +2,30 @@
 @model HostAndColor
 @{
 	ViewData["Title"] = "Home Page";
-
+	var c = $"#{System.Drawing.Color.FromArgb(Model.color).Name}";
 }
 
 <div class="text-center">
 	<h1 class="display-4">Welcome</h1>
 	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-	<div style="background:rgba(@Model.color)">
+	<div style="background-color: @c;">
 		<p>@Html.DisplayFor(m=> m.hostname)</p>
 		<p>@Html.DisplayFor(m=>m.ip)</p>
+		<p>@Environment.GetEnvironmentVariable("DEMO_API_FIRST_SERVICE_HOST")</p>
+		<p>@Environment.GetEnvironmentVariable("DEMO_API_FIRST_SERVICE_PORT")</p>
+		<p>@Environment.GetEnvironmentVariable("DEMO_API_FIRST_PORT")</p>
+		<p>@Environment.GetEnvironmentVariable("DEMO_API_FIRST_PORT_portnumber_protocol")</p>
+		<p>@Environment.GetEnvironmentVariable("DEMO_API_FIRST_PORT_portnumber_protocol_PROTO")</p>
+		<p>@Environment.GetEnvironmentVariable("DEMO_API_FIRST_PORT_portnumber_protocol_PORT")</p>
+		<p>@Environment.GetEnvironmentVariable("DEMO_API_FIRST_servicename_PORT_portnumber_protocol_ADDR")</p>
+
+		@foreach ( string key in Environment.GetEnvironmentVariables().Keys){
+		var x = $"Key: {key} value: {Environment.GetEnvironmentVariable(key)}";
+		<p>@x</p>
+		}
+
+		
 	</div>
 
 </div>

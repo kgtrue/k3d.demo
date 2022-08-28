@@ -86,7 +86,7 @@ demo-ui:
 
   image:
     repository: demo-rancher-registry:62701/demo-ui
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     tag: "1.0.0"
 
   service:
@@ -98,10 +98,13 @@ demo-ui:
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: "/"
     hosts:
-      - host: demo.k3d.local
+      - host: demo.k3d.localhost
         paths:
         - path: /
           pathType: Prefix
+          backend:
+            serviceName: demo.k3d.localhost
+            servicePort: 80
 
   autoscaling:
     enabled: false
@@ -114,7 +117,7 @@ demo-api-first:
 
   image:
     repository: demo-rancher-registry:62701/demo-api-first
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     tag: "1.0.0"
  
   service:
@@ -126,7 +129,7 @@ demo-api-first:
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: "/"
     hosts:
-      - host: demo.k3d.api.local
+      - host: demo.k3d.api.localhost
         paths:
         - path: /
           pathType: Prefix
@@ -142,7 +145,7 @@ demo-api-second:
 
   image:
     repository: demo-rancher-registry:62701/demo-api-second
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     tag: "1.0.0"
 
   service:

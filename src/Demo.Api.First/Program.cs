@@ -13,18 +13,13 @@ builder.Services.AddScoped<IDemoApiSecondService, DemoApiSecondService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
-app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+//app.UseHttpsRedirection();
 
 var host = Dns.GetHostName();
 var ip = Dns.GetHostEntry(host).AddressList.FirstOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork);

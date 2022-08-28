@@ -16,7 +16,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 var random = new Random();
 
@@ -29,10 +29,7 @@ app.MapGet("/RandomColor", () =>
     return colorARGB;
 })
 .WithName("RandomColor");
-
 app.MapGet("/helth", () => { return DateTime.UtcNow; }).WithName("helth");
-
-
 app.Run();
 
 internal record GetColorARGB(int argb)

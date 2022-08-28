@@ -13,18 +13,18 @@ namespace Demo.Api.First.Services
 
     public class DemoApiSecondService : IDemoApiSecondService
     {
-        private string BASE_URL_CONFIG_KEY = $"http://{Environment.GetEnvironmentVariable("DEMO_API_SECOND_SERVICE_HOST")}:{Environment.GetEnvironmentVariable("DEMO_API_SECOND_SERVICE_PORT")}";
+        private string BASE_URL_CONFIG_KEY = $"http://{Environment.GetEnvironmentVariable("DEMO_APP_RELEASE_DEMO_API_SECOND_SERVICE_HOST")}:{Environment.GetEnvironmentVariable("DEMO_APP_RELEASE_DEMO_API_SECOND_SERVICE_PORT")}";
         private readonly RestSharp.RestClient restClient;
         public DemoApiSecondService(IConfiguration configuration)
         {
-            restClient = new RestSharp.RestClient(configuration.GetValue<string>(BASE_URL_CONFIG_KEY));
+            restClient = new RestSharp.RestClient(BASE_URL_CONFIG_KEY);
         }
 
         public async Task<GetColorARGB> GetRandomARGB()
         {
             try
             {
-                var endPoint = "/HostAndColor";
+                var endPoint = "/RandomColor";
                 var request = new RestSharp.RestRequest(endPoint);
                 var response = await restClient.ExecuteAsync<GetColorARGB>(request);
 
