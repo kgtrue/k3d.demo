@@ -25,6 +25,4 @@ $env:KUBECONFIG=($env:KUBECONFIG_FILE)
 kubectl get nodes
 
 docker ps -f name=${env:CLUSTER_REGISTRY_NAME}
-
-date
 }
