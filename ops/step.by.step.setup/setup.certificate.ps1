@@ -1,0 +1,1 @@
+kubectl apply -f certificate.yaml -n demo-app
