@@ -1,1 +1,0 @@
-kubectl apply -f issuer.yaml -n demo-app

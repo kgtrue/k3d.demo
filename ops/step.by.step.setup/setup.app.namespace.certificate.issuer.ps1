@@ -6,7 +6,6 @@ $choices  = '&Yes', '&No'
 $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
 if ($decision -eq 0) {
 
-.\setup.app.namespace.ps1
-.\setup.certificate.issuer.ps1
-.\setup.certificate.ps1
+../step.by.step.setup/setup.certificates.ps1
+
 }
