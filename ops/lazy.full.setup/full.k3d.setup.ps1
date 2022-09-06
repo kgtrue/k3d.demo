@@ -11,14 +11,8 @@
 # run setup.cert-manager
 ../step.by.step.setup/setup.cert-manager.ps1
 
-# run setup.app.namespace.certificate.issuer
-../step.by.step.setup/setup.app.namespace.certificate.issuer.ps1
-
 # run setup.rancher.ps1
 ../step.by.step.setup/setup.rancher.ps1
-
-#create image registry
-#..\step.by.step.setup\setup.k3d.cluster.registry.ps1
 
 #run container build and push to local registry on port 5000
 Set-Location ../../buildtools/

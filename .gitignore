@@ -398,3 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 /ops/lazy.full.setup/*.yaml
 *.exe
+*.key
+*.crt
