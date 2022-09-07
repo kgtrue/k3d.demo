@@ -8,9 +8,9 @@ $choices  = '&Yes', '&No'
 
 $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
 if ($decision -eq 0) {
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
-kubectl create namespace cert-manager
-helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.9.1 --set installCRDs=true --wait
-kubectl -n cert-manager rollout status deploy/cert-manager
+	helm repo add jetstack https://charts.jetstack.io
+	helm repo update
+	kubectl create namespace cert-manager
+	helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.9.1 --set installCRDs=true --wait
+	kubectl -n cert-manager rollout status deploy/cert-manager
 }
