@@ -6,9 +6,6 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-annotations:
-  linkerd.io/inject: enabled
-
 demo-ui:
   replicaCount: 1
 
@@ -39,9 +36,8 @@ demo-ui:
 
   serviceAccount:
     create: false
-  
-  annotations:
-    linkerd.io/inject: enabled
+
+  useLinkerd: enabled
 
 demo-api-first:
   replicaCount: 4
@@ -71,6 +67,8 @@ demo-api-first:
   serviceAccount:
     create: false
 
+  useLinkerd: enabled
+
 demo-api-second:
   replicaCount: 1
 
@@ -91,3 +89,5 @@ demo-api-second:
 
   serviceAccount:
     create: false
+
+  useLinkerd: enabled

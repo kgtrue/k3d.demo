@@ -7,18 +7,6 @@ if ($decision -eq 0) {
 	choco install linkerd2
 }
 
-#install linkerd CNI Plugin
-#$title    = 'linkerd CNI Plugin'
-#$question = 'This will deploy CNI Plugin'
-#$choices  = '&Yes', '&No'
-#$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
-#if ($decision -eq 0) {
-#	helm repo update
-#	helm search repo linkerd2-cni
-#	helm install linkerd-cni -n linkerd-cni --create-namespace linkerd/linkerd2-cni
-#	linkerd check --pre --linkerd-cni-enabled
-#}
-
 #install linkerd crds
 $title    = 'Setup linkerd crds on cluster'
 $question = 'This will deploy linkerd crds to cluster'
@@ -27,7 +15,6 @@ $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
 if ($decision -eq 0) {
 	helm repo add linkerd-edge https://helm.linkerd.io/edge
 	helm install linkerd-crds linkerd/linkerd-crds -n linkerd
-	#helm install linkerd-crds -n linkerd --create-namespace --devel linkerd-edge/linkerd-crds
 }
 
 #install linkedrd
@@ -48,6 +35,5 @@ $question = 'This will deploy linkerd-control-plane to cluster'
 $choices  = '&Yes', '&No'
 $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
 if ($decision -eq 0) {
-	#helm install linkerd-control-plane -n linkerd --create-namespace --devel --set-file identityTrustAnchorsPEM=ca.crt --set-file identity.issuer.tls.crtPEM=tls.crt --set-file identity.issuer.tls.keyPEM=tls.key linkerd-edge/linkerd-control-plane
 	helm install linkerd-control-plane -n linkerd --devel --set installNamespace=false --set-file identityTrustAnchorsPEM=ca.crt --set-file identity.issuer.tls.crtPEM=tls.crt --set-file identity.issuer.tls.keyPEM=tls.key --dry-run --debug linkerd-edge/linkerd-control-plane
 }

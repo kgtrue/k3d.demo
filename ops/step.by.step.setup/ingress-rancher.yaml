@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/issuer: rancher
+    cert-manager.io/issuer-kind: Issuer
+    field.cattle.io/publicEndpoints: '[{"addresses":["192.168.1.218","192.168.1.219","192.168.1.220","192.168.1.221"],"port":443,"protocol":"HTTPS","serviceName":"cattle-system:rancher","ingressName":"cattle-system:rancher","hostname":"rancher.localhost","allNodes":false}]'
+    meta.helm.sh/release-name: rancher
+    meta.helm.sh/release-namespace: cattle-system
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+  creationTimestamp: "2022-09-13T18:47:52Z"
+  generation: 1
+  labels:
+    app: rancher
+    app.kubernetes.io/managed-by: Helm
+    chart: rancher-2.6.8
+    heritage: Helm
+    release: rancher
+  name: rancher
+  namespace: cattle-system
+  resourceVersion: "2776"
+  uid: 600a1cb6-c578-4706-b7ec-d7929a234c0b
+spec:
+  rules:
+  - host: rancher.oncluster
+    http:
+      paths:
+      - backend:
+          service:
+            name: rancher
+            port:
+              number: 80
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - rancher.localhost
+    secretName: tls-rancher-ingress
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.1.218
+    - ip: 192.168.1.219
+    - ip: 192.168.1.220
+    - ip: 192.168.1.221

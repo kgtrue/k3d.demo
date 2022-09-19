@@ -4,6 +4,8 @@ metadata:
   name: {{ include "demo-ui.fullname" . }}
   labels:
     {{- include "demo-ui.labels" . | nindent 4 }}
+  annotations:
+    linkerd.io/inject: {{ .Values.useLinkerd }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
