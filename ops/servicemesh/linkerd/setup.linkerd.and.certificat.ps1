@@ -7,7 +7,7 @@ if ($decision -eq 0) {
 	choco install linkerd2
 }
 
-$env:CERT_ROOT="./"
+$env:CERT_ROOT = "."
 
 step certificate create root.linkerd.cluster.local "${CERT_ROOT}/ca.crt" "${CERT_ROOT}/ca.key" --profile root-ca --no-password --insecure --force
 
@@ -16,23 +16,23 @@ step certificate create identity.linkerd.cluster.local ${CERT_ROOT}/issuer.crt $
 kubectl label namespace kube-system config.linkerd.io/admission-webhooks=disabled
 
 #install linkerd crds
-#$title    = 'Setup linkerd crds on cluster'
-#$question = 'This will deploy linkerd crds to cluster'
-#$choices  = '&Yes', '&No'
-#$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
-#if ($decision -eq 0) {
-#	helm repo add linkerd https://helm.linkerd.io/stable
-#	helm repo add linkerd-edge https://helm.linkerd.io/edge
-#	
-#	helm install linkerd-crds linkerd/linkerd-crds -n linkerd --create-namespace
-#	
-#}
+$title    = 'Setup linkerd crds on cluster'
+$question = 'This will deploy linkerd crds to cluster'
+$choices  = '&Yes', '&No'
+$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+if ($decision -eq 0) {
+	helm repo add linkerd https://helm.linkerd.io/stable
+	helm repo add linkerd-edge https://helm.linkerd.io/edge
+	
+	helm install linkerd-crds linkerd/linkerd-crds -n linkerd --create-namespace
+	
+}
 
 #install linkerd-control-plane
-#$title    = 'Setup linkerd-control-plane on cluster'
-#$question = 'This will deploy linkerd-control-plane to cluster'
-#$choices  = '&Yes', '&No'
-#$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
-#if ($decision -eq 0) {
-#	helm install linkerd-control-plane -n linkerd --set-file identityTrustAnchorsPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.crtPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.keyPEM=${CERT_ROOT}/issuer.key linkerd-edge/linkerd-control-plane
-#}
+$title    = 'Setup linkerd-control-plane on cluster'
+$question = 'This will deploy linkerd-control-plane to cluster'
+$choices  = '&Yes', '&No'
+$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+if ($decision -eq 0) {
+	helm install linkerd-control-plane -n linkerd --set-file identityTrustAnchorsPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.crtPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.keyPEM=${CERT_ROOT}/issuer.key linkerd/linkerd-control-plane
+}

@@ -46,6 +46,9 @@ demo-ui:
   
   env:
     "ASPNETCORE_ENVIRONMENT": "Development"
+  
+  podAnnotations:
+    linkerd.io/inject: enabled
 
 demo-api-first:
   replicaCount: 4
@@ -79,6 +82,9 @@ demo-api-first:
   
   env:
     "ASPNETCORE_ENVIRONMENT": "Development"
+    
+  podAnnotations:
+    linkerd.io/inject: enabled
 
 demo-api-second:
   replicaCount: 1
@@ -105,3 +111,6 @@ demo-api-second:
   
   env:
     "ASPNETCORE_ENVIRONMENT": "Development"
+    
+  podAnnotations:
+    linkerd.io/inject: enabled
