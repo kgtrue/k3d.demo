@@ -6,6 +6,11 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+global:
+  env: 
+    "ASPNETCORE_ENVIRONMENT": "Staging"
+    "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true" 
+
 demo-ui:
   replicaCount: 1
 
@@ -38,6 +43,9 @@ demo-ui:
     create: false
 
   useLinkerd: enabled
+  
+  env:
+    "ASPNETCORE_ENVIRONMENT": "Development"
 
 demo-api-first:
   replicaCount: 4
@@ -68,6 +76,9 @@ demo-api-first:
     create: false
 
   useLinkerd: enabled
+  
+  env:
+    "ASPNETCORE_ENVIRONMENT": "Development"
 
 demo-api-second:
   replicaCount: 1
@@ -91,3 +102,6 @@ demo-api-second:
     create: false
 
   useLinkerd: enabled
+  
+  env:
+    "ASPNETCORE_ENVIRONMENT": "Development"

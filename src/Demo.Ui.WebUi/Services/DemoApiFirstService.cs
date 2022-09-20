@@ -14,7 +14,7 @@ namespace Demo.Api.First.Services
 
     public class DemoApiFirstService : IDemoApiFirstService
     {
-        private string BASE_URL_CONFIG_KEY = $"http://{Environment.GetEnvironmentVariable("DEMO_APP_RELEASE_DEMO_API_FIRST_SERVICE_HOST")}:{Environment.GetEnvironmentVariable("DEMO_APP_RELEASE_DEMO_API_FIRST_SERVICE_PORT")}";
+        private string BASE_URL_CONFIG_KEY = $"http://{Environment.GetEnvironmentVariable($"{Environment.GetEnvironmentVariable("RELEASE_NAME")?.ToUpper().Replace("-", "_")}_DEMO_API_FIRST_SERVICE_HOST")}:{Environment.GetEnvironmentVariable($"{Environment.GetEnvironmentVariable("RELEASE_NAME")?.ToUpper().Replace("-", "_")}_DEMO_API_FIRST_SERVICE_PORT")}";
         private readonly RestSharp.RestClient restClient;
         public DemoApiFirstService(IConfiguration configuration)
         {

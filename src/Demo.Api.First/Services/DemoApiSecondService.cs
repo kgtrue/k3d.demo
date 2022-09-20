@@ -12,8 +12,8 @@ namespace Demo.Api.First.Services
     }
 
     public class DemoApiSecondService : IDemoApiSecondService
-    {
-        private string BASE_URL_CONFIG_KEY = $"http://{Environment.GetEnvironmentVariable("DEMO_APP_RELEASE_DEMO_API_SECOND_SERVICE_HOST")}:{Environment.GetEnvironmentVariable("DEMO_APP_RELEASE_DEMO_API_SECOND_SERVICE_PORT")}";
+    {        
+        private string BASE_URL_CONFIG_KEY = $"http://{Environment.GetEnvironmentVariable($"{Environment.GetEnvironmentVariable("RELEASE_NAME")?.ToUpper().Replace("-", "_")}_DEMO_API_SECOND_SERVICE_HOST")}:{Environment.GetEnvironmentVariable($"{Environment.GetEnvironmentVariable("RELEASE_NAME")?.ToUpper().Replace("-", "_")}_DEMO_API_SECOND_SERVICE_PORT")}";
         private readonly RestSharp.RestClient restClient;
         public DemoApiSecondService(IConfiguration configuration)
         {
