@@ -7,13 +7,17 @@ if ($decision -eq 0) {
 	choco install linkerd2
 }
 
-$env:CERT_ROOT = "."
-
-step certificate create root.linkerd.cluster.local "${CERT_ROOT}/ca.crt" "${CERT_ROOT}/ca.key" --profile root-ca --no-password --insecure --force
-
-step certificate create identity.linkerd.cluster.local ${CERT_ROOT}/issuer.crt ${CERT_ROOT}/issuer.key --profile intermediate-ca --not-after 8760h --no-password --insecure --ca ${CERT_ROOT}/ca.crt --ca-key ${CERT_ROOT}/ca.key --force
-
-kubectl label namespace kube-system config.linkerd.io/admission-webhooks=disabled
+#setup cert
+$title    = 'Setup certificate'
+$question = 'This will generate certificate and namespace label'
+$choices  = '&Yes', '&No'
+$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+if ($decision -eq 0) {
+	$env:CERT_ROOT = "."
+	step certificate create root.linkerd.cluster.local "${CERT_ROOT}/ca.crt" "${CERT_ROOT}/ca.key" --profile root-ca --no-password --insecure --force
+	step certificate create identity.linkerd.cluster.local ${CERT_ROOT}/issuer.crt ${CERT_ROOT}/issuer.key --profile intermediate-ca --not-after 8760h --no-password --insecure --ca ${CERT_ROOT}/ca.crt --ca-key ${CERT_ROOT}/ca.key --force
+	kubectl label namespace kube-system config.linkerd.io/admission-webhooks=disabled
+}
 
 #install linkerd crds
 $title    = 'Setup linkerd crds on cluster'
@@ -36,3 +40,14 @@ $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
 if ($decision -eq 0) {
 	helm install linkerd-control-plane -n linkerd --set-file identityTrustAnchorsPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.crtPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.keyPEM=${CERT_ROOT}/issuer.key linkerd/linkerd-control-plane
 }
+
+#install linkerd-control-plane
+$title    = 'Setup grafana for linkerd'
+$question = 'This will deploy grafana for linkerd-wiz'
+$choices  = '&Yes', '&No'
+$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+if ($decision -eq 0) {
+	helm repo add grafana https://grafana.github.io/helm-charts
+	helm install grafana -n grafana --create-namespace grafana/grafana -f https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/values.yaml
+}
+
