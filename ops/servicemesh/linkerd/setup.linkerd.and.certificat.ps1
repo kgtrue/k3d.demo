@@ -19,28 +19,6 @@ if ($decision -eq 0) {
 	kubectl label namespace kube-system config.linkerd.io/admission-webhooks=disabled
 }
 
-#install linkerd crds
-$title    = 'Setup linkerd crds on cluster'
-$question = 'This will deploy linkerd crds to cluster'
-$choices  = '&Yes', '&No'
-$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
-if ($decision -eq 0) {
-	helm repo add linkerd https://helm.linkerd.io/stable
-	helm repo add linkerd-edge https://helm.linkerd.io/edge
-	
-	helm install linkerd-crds linkerd/linkerd-crds -n linkerd --create-namespace
-	
-}
-
-#install linkerd-control-plane
-$title    = 'Setup linkerd-control-plane on cluster'
-$question = 'This will deploy linkerd-control-plane to cluster'
-$choices  = '&Yes', '&No'
-$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
-if ($decision -eq 0) {
-	helm install linkerd-control-plane -n linkerd --set-file identityTrustAnchorsPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.crtPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.keyPEM=${CERT_ROOT}/issuer.key linkerd/linkerd-control-plane
-}
-
 #install linkerd-control-plane
 $title    = 'Setup grafana for linkerd'
 $question = 'This will deploy grafana for linkerd-wiz'
@@ -50,4 +28,35 @@ if ($decision -eq 0) {
 	helm repo add grafana https://grafana.github.io/helm-charts
 	helm install grafana -n grafana --create-namespace grafana/grafana -f https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/values.yaml
 }
+
+#install linkerd crds
+$title    = 'Setup linkerd crds on cluster'
+$question = 'This will deploy linkerd crds to cluster'
+$choices  = '&Yes', '&No'
+$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+if ($decision -eq 0) {
+	helm repo add linkerd https://helm.linkerd.io/stable
+	helm repo add linkerd-edge https://helm.linkerd.io/edge	
+	helm install linkerd-crds linkerd/linkerd-crds -n linkerd --create-namespace	
+}
+
+#install linkerd-control-plane
+$title    = 'Setup linkerd-control-plane on cluster'
+$question = 'This will deploy linkerd-control-plane to cluster'
+$choices  = '&Yes', '&No'
+$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+if ($decision -eq 0) {
+	helm install linkerd-control-plane -n linkerd --set-file identityTrustAnchorsPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.crtPEM=${CERT_ROOT}/issuer.crt --set-file identity.issuer.tls.keyPEM=${CERT_ROOT}/issuer.key linkerd/linkerd-control-plane --wait
+	linkerd check
+}
+
+#Setup viz
+$title    = 'Setup linkerd viz'
+$question = 'This will deploy linkerd crds to cluster'
+$choices  = '&Yes', '&No'
+$decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+if ($decision -eq 0) {
+	helm install linkerd-viz linkerd/linkerd-viz --set grafana.url=grafana.grafana:3000
+}
+
 
