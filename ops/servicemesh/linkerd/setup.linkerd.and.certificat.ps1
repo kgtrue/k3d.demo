@@ -25,7 +25,7 @@ $question = 'This will deploy grafana for linkerd-wiz'
 $choices  = '&Yes', '&No'
 $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
 if ($decision -eq 0) {
-	helm repo add grafana https://grafana.github.io/helm-charts
+	helm repo add grafana https://grafana.github.io/helm-charts --force-update 
 	helm install grafana -n grafana --create-namespace grafana/grafana -f https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/values.yaml
 }
 
@@ -56,7 +56,7 @@ $question = 'This will deploy linkerd crds to cluster'
 $choices  = '&Yes', '&No'
 $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
 if ($decision -eq 0) {
-	helm install linkerd-viz linkerd/linkerd-viz --set grafana.url=grafana.grafana:3000
+	helm install linkerd-viz -n linkerd linkerd/linkerd-viz --set grafana.url=grafana.grafana:3000
 }
 
 
