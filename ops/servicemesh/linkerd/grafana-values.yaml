@@ -2,6 +2,8 @@ podAnnotations:
   linkerd.io/inject: enabled
 
 grafana.ini:
+  server:
+    root_url: '%(protocol)s://%(domain)s:/grafana/'
   auth:
     disable_login_form: true
   auth.anonymous:
@@ -27,7 +29,7 @@ datasources:
       type: prometheus
       access: proxy
       orgId: 1
-      url: http://prometheus.linkerd-viz.svc.cluster.local:9090
+      url: http://prometheus.linkerd.svc.cluster.local:9090
       isDefault: true
       jsonData:
         timeInterval: "5s"

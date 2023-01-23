@@ -26,7 +26,7 @@ $choices  = '&Yes', '&No'
 $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
 if ($decision -eq 0) {
 	helm repo add grafana https://grafana.github.io/helm-charts --force-update 
-	helm install grafana -n grafana --create-namespace grafana/grafana -f https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/values.yaml
+	helm install grafana -n grafana --create-namespace grafana/grafana -f grafana-values.yaml
 }
 
 #install linkerd crds
