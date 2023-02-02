@@ -4,6 +4,10 @@ metadata:
   name: {{ include "demo-api-first.fullname" . }}
   labels:
     {{- include "demo-api-first.labels" . | nindent 4 }}
+  {{- with .Values.deployAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 8 }}
+  {{- end }}  
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
