@@ -21,6 +21,7 @@ demo-ui:
 
   securityContext:
     allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
 
   deployAnnotations:
   #  linkerd.io/inject: enabled
@@ -53,7 +54,12 @@ demo-ui:
   
   env:
     "ASPNETCORE_ENVIRONMENT": "Development"
-  
+
+  resources:
+    limits:
+      memory: "2000Mi"
+
+
 demo-api-first:
   replicaCount: 4
 
@@ -94,6 +100,10 @@ demo-api-first:
   env:
     "ASPNETCORE_ENVIRONMENT": "Development"
 
+  resources:
+    limits:
+      memory: "500Mi"
+
 demo-api-second:
   replicaCount: 1
 
@@ -126,3 +136,7 @@ demo-api-second:
   
   env:
     "ASPNETCORE_ENVIRONMENT": "Development"
+
+  resources:
+    limits:
+      memory: "500Mi"
