@@ -12,7 +12,7 @@ global:
     "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true" 
 
 demo-ui:
-  replicaCount: 1
+  replicaCount: 2
 
   image:
     repository: demo-rancher-registry:62701/demo-ui
@@ -57,8 +57,9 @@ demo-ui:
 
   resources:
     limits:
-      memory: "2000Mi"
-
+      memory: "500Mi"
+    requests:
+      memory: "64Mi"
 
 demo-api-first:
   replicaCount: 4
@@ -70,6 +71,7 @@ demo-api-first:
  
   securityContext:
     allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
 
   deployAnnotations:
   #  linkerd.io/inject: enabled
@@ -103,9 +105,11 @@ demo-api-first:
   resources:
     limits:
       memory: "500Mi"
+    requests:
+      memory: "64Mi"
 
 demo-api-second:
-  replicaCount: 1
+  replicaCount: 2
 
   image:
     repository: demo-rancher-registry:62701/demo-api-second
@@ -114,6 +118,7 @@ demo-api-second:
 
   securityContext:
     allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
 
   deployAnnotations:
   #  linkerd.io/inject: enabled
@@ -140,3 +145,5 @@ demo-api-second:
   resources:
     limits:
       memory: "500Mi"
+    requests:
+      memory: "64Mi"
