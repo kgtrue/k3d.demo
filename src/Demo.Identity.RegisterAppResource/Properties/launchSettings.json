@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Demo.Identity.RegisterAppResource": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
