@@ -14,11 +14,11 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 //app.UseHttpsRedirection();
 
@@ -38,6 +38,7 @@ app.MapGet("/HostAndColor", async (IDemoApiSecondService demoApiSecondService) =
 .WithName("HostAndColor");
 
 app.MapGet("/helth", () => { return DateTime.UtcNow; }).WithName("helth");
+app.MapGet("/foo", () => { return "Bar"; }).WithName("foo");
 
 app.Run();
 

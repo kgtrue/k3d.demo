@@ -8,10 +8,10 @@ resource demo 'Applications.Core/containers@2023-10-01-preview' = {
   properties: {
     application: application
     container: {
-      image: 'ghcr.io/radius-project/samples/demo:latest'
+      image: 'demo-rancher-registry:62701/demo-api-first:latest'
       ports: {
         web: {
-          containerPort: 3000
+          containerPort: 80
         }
       }
     }
