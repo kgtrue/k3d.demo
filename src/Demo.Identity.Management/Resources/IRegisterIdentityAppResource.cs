@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Demo.Identity.Management.Resources
 {
-    internal interface IRegisterIdentityAppResource
+    public interface IRegisterIdentityAppResource
     {
+        public Task<bool> RegisterApp();
     }
 }

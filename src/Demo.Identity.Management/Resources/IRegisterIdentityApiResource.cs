@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Demo.Identity.Management.Resources
 {
-    internal interface IRegisterIdentityApiResource
+    public interface IRegisterIdentityApiResource
     {
+        public Task<bool> RegisterApi();
     }
 }

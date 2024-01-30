@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  demo.ui.webui:
+    image: ${DOCKER_REGISTRY-}demouiwebui
+    build:
+      context: .
+      dockerfile: src/Demo.Ui.WebUi/Dockerfile

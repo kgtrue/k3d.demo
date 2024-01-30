@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo.Identity.Management.Auth0
+namespace Demo.Identity.Management.Options
 {
-    internal class RegisterAuth0IdentityAppResource
+    public record AppInformation
     {
+
     }
 }

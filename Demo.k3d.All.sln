@@ -17,11 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{13
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InitContainers", "InitContainers", "{A2727F08-717F-4F1B-A2E4-D5F2E61FB4F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Identity.RegisterAppResource", "src\Demo.Identity.RegisterAppResource\Demo.Identity.RegisterAppResource.csproj", "{F9620207-733A-4E8D-B2E4-498BF5EBD703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Identity.RegisterAppResource", "src\Demo.Identity.RegisterAppResource\Demo.Identity.RegisterAppResource.csproj", "{F9620207-733A-4E8D-B2E4-498BF5EBD703}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Identity.RegisterApiResource", "src\Demo.Identity.RegisterApiResource\Demo.Identity.RegisterApiResource.csproj", "{7910C84A-7A06-4AFB-8022-3DABE8FAE8B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Identity.Management", "src\Demo.Identity.Management\Demo.Identity.Management.csproj", "{FD4246C9-4CEC-446F-B4E7-D36DA1525ECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Identity.Management", "src\Demo.Identity.Management\Demo.Identity.Management.csproj", "{FD4246C9-4CEC-446F-B4E7-D36DA1525ECE}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{87812B42-2D3C-4B7A-82B8-7B98C396C6FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "compose", "compose", "{3879118F-9BC3-42D8-B911-1E9406CFACF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,10 @@ Global
 		{FD4246C9-4CEC-446F-B4E7-D36DA1525ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD4246C9-4CEC-446F-B4E7-D36DA1525ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD4246C9-4CEC-446F-B4E7-D36DA1525ECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87812B42-2D3C-4B7A-82B8-7B98C396C6FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87812B42-2D3C-4B7A-82B8-7B98C396C6FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87812B42-2D3C-4B7A-82B8-7B98C396C6FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87812B42-2D3C-4B7A-82B8-7B98C396C6FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +73,7 @@ Global
 		{F9620207-733A-4E8D-B2E4-498BF5EBD703} = {A2727F08-717F-4F1B-A2E4-D5F2E61FB4F2}
 		{7910C84A-7A06-4AFB-8022-3DABE8FAE8B8} = {A2727F08-717F-4F1B-A2E4-D5F2E61FB4F2}
 		{FD4246C9-4CEC-446F-B4E7-D36DA1525ECE} = {A2727F08-717F-4F1B-A2E4-D5F2E61FB4F2}
+		{87812B42-2D3C-4B7A-82B8-7B98C396C6FD} = {3879118F-9BC3-42D8-B911-1E9406CFACF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {850209DD-4D4A-4E93-A4A8-950463E9EA11}
